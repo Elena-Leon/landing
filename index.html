@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Елена Дмитриева</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(160deg, #ddeeff 0%, #f0eaff 50%, #e4f6ff 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .container {
+      text-align: center;
+      background: rgba(255,255,255,0.9);
+      border-radius: 16px;
+      padding: 60px 40px;
+      box-shadow: 0 20px 45px rgba(80,70,120,0.15);
+      max-width: 400px;
+    }
+    h1 {
+      font-size: 28px;
+      color: #2f2a4d;
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    p {
+      color: rgba(60,40,120,0.75);
+      margin-bottom: 40px;
+      font-size: 14px;
+    }
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    a {
+      display: inline-block;
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 2px solid;
+      font-size: 16px;
+    }
+    .landing {
+      background: linear-gradient(135deg, #7B2FBE 0%, #4A90D9 100%);
+      color: white;
+      border-color: #7B2FBE;
+    }
+    .landing:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(123,47,190,0.3);
+    }
+    .vizitka {
+      background: white;
+      color: #2f2a4d;
+      border-color: rgba(160,140,220,0.25);
+    }
+    .vizitka:hover {
+      background: #f8f7ff;
+      border-color: #7B2FBE;
+      transform: translateY(-3px);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Елена Дмитриева</h1>
+    <p>AI-сотрудники для бизнеса</p>
+    <div class="links">
+      <a href="landing.html" class="landing">🚀 Подробнее о сервисе</a>
+      <a href="vizitka.html" class="vizitka">👤 Моя визитка</a>
+    </div>
+  </div>
+</body>
+</html>
