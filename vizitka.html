@@ -17,10 +17,11 @@
     body {
       font-family: 'Inter', sans-serif;
       background:
-        radial-gradient(ellipse 70% 60% at 5% 5%,  rgba(100, 185, 255, 0.72) 0%, transparent 55%),
-        radial-gradient(ellipse 55% 65% at 95% 95%, rgba(175, 110, 255, 0.55) 0%, transparent 55%),
-        radial-gradient(ellipse 40% 35% at 52% 0%,  rgba(100, 228, 255, 0.45) 0%, transparent 50%),
-        linear-gradient(135deg, #b8d9ff 0%, #ddc8ff 50%, #b8e6ff 100%);
+        radial-gradient(ellipse 88% 78% at 50% 50%,  rgba(255,255,255,0.50) 0%, transparent 65%),
+        radial-gradient(ellipse 68% 56% at 5%  6%,   rgba(70, 150, 255, 0.72) 0%, transparent 52%),
+        radial-gradient(ellipse 54% 64% at 94% 94%,  rgba(125,  95, 240, 0.50) 0%, transparent 52%),
+        radial-gradient(ellipse 40% 34% at 52%  0%,  rgba(80, 210, 255, 0.42) 0%, transparent 48%),
+        linear-gradient(135deg, #bfccee 0%, #c9c2f2 50%, #baccec 100%);
       color: #2f2a4d;
     }
 
@@ -66,6 +67,13 @@
       font-size: clamp(46px, 5.4vw, 76px);
       line-height: 1.0;
       font-weight: 700;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: clamp(24px, 2.6vh, 48px);
+    }
+
+    .name span {
       background: linear-gradient(90deg, #5b9bf0, #7b2fbe, #00c8b8);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -151,7 +159,7 @@
       display: flex;
       gap: 12px;
       justify-content: center;
-      margin-bottom: clamp(38px, 2.6vh, 70px);
+      margin-bottom: clamp(45px, 2.6vh, 80px);
     }
 
     .messenger {
@@ -336,7 +344,7 @@
       <span class="label">ПЕРСОНАЛЬНАЯ ВИЗИТКА</span>
 
       <div class="name-wrap">
-        <h1 class="name">Елена<br>Дмитриева</h1>
+        <h1 class="name"><span>Елена</span><span>Дмитриева</span></h1>
         <span class="divider"></span>
       </div>
 
@@ -370,16 +378,7 @@
           <span class="messenger-label">позвонить</span>
         </a>
         <a class="messenger" href="#" aria-label="MAX">
-          <svg viewBox="0 0 26 26" style="fill:none;width:30px;height:30px" aria-hidden="true">
-            <defs>
-              <linearGradient id="maxG" x1="0" y1="0" x2="26" y2="26" gradientUnits="userSpaceOnUse">
-                <stop offset="0%" stop-color="#4A8EFF"/>
-                <stop offset="100%" stop-color="#8B3FF5"/>
-              </linearGradient>
-            </defs>
-            <rect width="26" height="26" rx="8" style="fill:url(#maxG)"/>
-            <path d="M13 7c-3.3 0-6 2.3-6 5.2 0 1.7.9 3.2 2.2 4.2l-.7 2.6 2.6-1c.6.1 1.2.2 1.9.2 3.3 0 6-2.3 6-5.2S16.3 7 13 7z" style="fill:white"/>
-          </svg>
+          <img src="Макс.png" alt="MAX" width="28" height="28" />
           <span class="messenger-label">MAX</span>
         </a>
       </div>
@@ -434,6 +433,18 @@
     document.querySelectorAll('.tag, .messenger, .cta').forEach(function (el) {
       addTilt(el, 13);
     });
+
+    // CTA ширина = ширина блока с именем (= ширина «Дмитриева»)
+    function syncCtaWidth() {
+      if (window.innerWidth > 768) {
+        var nw  = document.querySelector('.name-wrap');
+        var cta = document.querySelector('.cta');
+        cta.style.width    = nw.offsetWidth + 'px';
+        cta.style.minWidth = 'unset';
+      }
+    }
+    document.fonts.ready.then(syncCtaWidth);
+    window.addEventListener('resize', syncCtaWidth);
 
     // rotating words: AI-сотрудников → Сайтов → Приложений
     var words = ['AI-сотрудников', 'Сайтов', 'Приложений'];
