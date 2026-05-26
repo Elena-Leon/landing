@@ -32,8 +32,8 @@
 
     /* ── LEFT COLUMN ── */
     .content {
-      flex: 0 0 55%;
-      width: 55%;
+      flex: 0 0 58%;
+      width: 58%;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -112,9 +112,14 @@
     /* ── TAGS ── */
     .tags {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 8px;
       margin-bottom: clamp(14px, 1.8vh, 24px);
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 8px;
     }
 
     .tag {
@@ -223,10 +228,13 @@
 
     /* ── RIGHT COLUMN ── */
     .photo-col {
-      flex: 0 0 45%;
-      width: 45%;
+      flex: 0 0 42%;
+      width: 42%;
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
     }
 
     /* fade photo into the background */
@@ -236,19 +244,21 @@
       inset: 0;
       background: linear-gradient(to right,
         rgba(185, 210, 255, 1)    0%,
-        rgba(185, 210, 255, 0.65) 13%,
-        rgba(185, 210, 255, 0.15) 32%,
-        transparent               54%
+        rgba(185, 210, 255, 0.65) 10%,
+        rgba(185, 210, 255, 0.12) 26%,
+        transparent               44%
       );
       z-index: 1;
       pointer-events: none;
     }
 
     .photo-col img {
-      width: 100%;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
       height: 100%;
-      object-fit: cover;
-      object-position: top center;
+      object-fit: contain;
+      object-position: right center;
       display: block;
     }
 
@@ -325,11 +335,15 @@
       </p>
 
       <div class="tags">
-        <span class="tag">🤖 AI-помощники</span>
-        <span class="tag">⚡ Автоматизация</span>
-        <span class="tag">🔗 Интеграция</span>
-        <span class="tag">📋 Бизнес-процессы</span>
-        <span class="tag">🚀 Масштабирование</span>
+        <div class="tag-row">
+          <span class="tag">🤖 AI-помощники</span>
+          <span class="tag">⚡ Автоматизация</span>
+          <span class="tag">🔗 Интеграция</span>
+        </div>
+        <div class="tag-row">
+          <span class="tag">📋 Бизнес-процессы</span>
+          <span class="tag">🚀 Масштабирование</span>
+        </div>
       </div>
 
       <div class="messengers">
@@ -358,7 +372,7 @@
     </div>
 
     <div class="photo-col">
-      <img src="with cat.png" alt="Елена Дмитриева">
+      <img src="with cat — копия.png" alt="Елена Дмитриева">
     </div>
 
   </div>
