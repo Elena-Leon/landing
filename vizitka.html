@@ -111,6 +111,11 @@
       font-weight: 600;
     }
 
+    .rotating-word {
+      display: inline-block;
+      transition: opacity 0.38s ease, transform 0.38s ease;
+    }
+
     /* ── TAGS ── */
     .tags {
       display: flex;
@@ -336,7 +341,7 @@
       </div>
 
       <p class="role">
-        <span class="accent">Эксперт</span> по созданию <span class="accent">AI-сотрудников</span> для автоматизации бизнеса <span class="accent">24/7</span>
+        <span class="accent">Эксперт</span> по созданию <span class="accent rotating-word">AI-сотрудников</span> для автоматизации бизнеса <span class="accent">24/7</span>
       </p>
 
       <div class="tags">
@@ -363,6 +368,19 @@
         <a class="messenger" href="tel:+0000000000" aria-label="Телефон">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.06-.27c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C9.92 21 3 14.08 3 5a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.27 1.06l-2.18 2.16z"/></svg>
           <span class="messenger-label">позвонить</span>
+        </a>
+        <a class="messenger" href="#" aria-label="MAX">
+          <svg viewBox="0 0 26 26" style="fill:none;width:30px;height:30px" aria-hidden="true">
+            <defs>
+              <linearGradient id="maxG" x1="0" y1="0" x2="26" y2="26" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#4A8EFF"/>
+                <stop offset="100%" stop-color="#8B3FF5"/>
+              </linearGradient>
+            </defs>
+            <rect width="26" height="26" rx="8" style="fill:url(#maxG)"/>
+            <path d="M13 7c-3.3 0-6 2.3-6 5.2 0 1.7.9 3.2 2.2 4.2l-.7 2.6 2.6-1c.6.1 1.2.2 1.9.2 3.3 0 6-2.3 6-5.2S16.3 7 13 7z" style="fill:white"/>
+          </svg>
+          <span class="messenger-label">MAX</span>
         </a>
       </div>
 
@@ -416,6 +434,31 @@
     document.querySelectorAll('.tag, .messenger, .cta').forEach(function (el) {
       addTilt(el, 13);
     });
+
+    // rotating words: AI-сотрудников → Сайтов → Приложений
+    var words = ['AI-сотрудников', 'Сайтов', 'Приложений'];
+    var widx  = 0;
+    var rw    = document.querySelector('.rotating-word');
+
+    function nextWord() {
+      rw.style.opacity   = '0';
+      rw.style.transform = 'translateY(-7px)';
+      setTimeout(function () {
+        widx = (widx + 1) % words.length;
+        rw.textContent = words[widx];
+        rw.style.transition = 'none';
+        rw.style.transform  = 'translateY(7px)';
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            rw.style.transition = 'opacity 0.38s ease, transform 0.38s ease';
+            rw.style.opacity    = '1';
+            rw.style.transform  = 'translateY(0)';
+          });
+        });
+      }, 400);
+    }
+
+    setInterval(nextWord, 3000);
   </script>
 </body>
 </html>
