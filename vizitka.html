@@ -52,13 +52,13 @@
       letter-spacing: 0.26em;
       text-transform: uppercase;
       color: rgba(50, 30, 110, 0.52);
-      margin-bottom: clamp(12px, 1.8vh, 22px);
+      margin-bottom: clamp(18px, 2.6vh, 30px);
     }
 
     /* name + divider share the same width (= longest text line) */
     .name-wrap {
       max-width: 100%;
-      margin-bottom: clamp(12px, 1.8vh, 22px);
+      margin-bottom: clamp(18px, 2.6vh, 30px);
     }
 
     .name {
@@ -98,7 +98,7 @@
       font-size: clamp(13px, 1.25vw, 15px);
       line-height: 1.65;
       color: rgba(55, 35, 115, 0.72);
-      margin-bottom: clamp(14px, 1.8vh, 24px);
+      margin-bottom: clamp(18px, 2.6vh, 30px);
       max-width: 380px;
       text-align: center;
     }
@@ -111,12 +111,17 @@
       font-weight: 600;
     }
 
+    .rotating-word {
+      display: inline-block;
+      transition: opacity 0.38s ease, transform 0.38s ease;
+    }
+
     /* ── TAGS ── */
     .tags {
       display: flex;
       flex-direction: column;
       gap: 8px;
-      margin-bottom: clamp(14px, 1.8vh, 24px);
+      margin-bottom: clamp(18px, 2.6vh, 30px);
     }
 
     .tag-row {
@@ -146,7 +151,7 @@
       display: flex;
       gap: 12px;
       justify-content: center;
-      margin-bottom: clamp(14px, 1.8vh, 24px);
+      margin-bottom: clamp(18px, 2.6vh, 30px);
     }
 
     .messenger {
@@ -336,7 +341,7 @@
       </div>
 
       <p class="role">
-        <span class="accent">Эксперт</span> по созданию <span class="accent">AI-сотрудников</span> для автоматизации бизнеса <span class="accent">24/7</span>
+        <span class="accent">Эксперт</span> по созданию <span class="accent rotating-word">AI-сотрудников</span> для автоматизации бизнеса <span class="accent">24/7</span>
       </p>
 
       <div class="tags">
@@ -416,6 +421,33 @@
     document.querySelectorAll('.tag, .messenger, .cta').forEach(function (el) {
       addTilt(el, 13);
     });
+
+    // rotating words: AI-сотрудников → Сайтов → Приложений
+    var words  = ['AI-сотрудников', 'Сайтов', 'Приложений'];
+    var widx   = 0;
+    var rw     = document.querySelector('.rotating-word');
+
+    function nextWord() {
+      // slide out upward
+      rw.style.opacity   = '0';
+      rw.style.transform = 'translateY(-7px)';
+      setTimeout(function () {
+        widx = (widx + 1) % words.length;
+        rw.textContent = words[widx];
+        // start from below, then slide into place
+        rw.style.transition = 'none';
+        rw.style.transform  = 'translateY(7px)';
+        requestAnimationFrame(function () {
+          requestAnimationFrame(function () {
+            rw.style.transition = 'opacity 0.38s ease, transform 0.38s ease';
+            rw.style.opacity    = '1';
+            rw.style.transform  = 'translateY(0)';
+          });
+        });
+      }, 400);
+    }
+
+    setInterval(nextWord, 3000);
   </script>
 </body>
 </html>
